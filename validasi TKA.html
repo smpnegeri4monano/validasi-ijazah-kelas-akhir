@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validasi Ijazah - SMPN 4 MONANO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .bg-navy { background-color: #003366; }
+        .text-navy { color: #003366; }
+        .loader { border: 3px solid #f3f3f3; border-top: 3px solid #003366; border-radius: 50%; width: 18px; height: 18px; animation: spin 1s linear infinite; display: inline-block; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="text-slate-900 pb-10">
+
+    <nav class="bg-navy text-white sticky top-0 z-50 shadow-lg border-b-4 border-yellow-400">
+        <div class="container mx-auto px-4 py-4 flex items-center space-x-3">
+            <img src="logo.png" alt="Logo" class="h-10 w-10">
+            <div>
+                <h1 class="text-sm font-extrabold uppercase tracking-tighter">SMPN 4 <span class="text-yellow-400">MONANO</span></h1>
+                <p class="text-[10px] opacity-75 font-medium italic">Data Unduh: 2026-01-27 [cite: 3]</p>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-6 max-w-2xl">
+        <div id="statusInfo" class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r-xl">
+            <p class="text-xs text-blue-700 font-bold italic">Menghubungkan ke database sekolah...</p>
+        </div>
+
+        <div class="mb-8">
+            <label class="block text-[11px] font-black text-navy uppercase tracking-widest mb-2">Pilih Nama Peserta Didik:</label>
+            <select id="studentSelect" class="w-full p-4 bg-white border-2 border-slate-200 rounded-2xl font-bold text-slate-700 outline-none focus:border-yellow-400 shadow-sm appearance-none">
+                <option value="">-- Pilih Nama --</option>
+                <option value="1" data-jk="Perempuan" data-nisn="3106890723" data-lahir="GORONTALO UTARA, 2010-12-15" data-ayah="Ibrahim B. Nuna">AFDILA NUNA</option>
+                <option value="2" data-jk="Perempuan" data-nisn="0114433498" data-lahir="Tudi, 2011-08-17" data-ayah="Enos S Richo Alfareds">Almulia Ramadani</option>
+                <option value="3" data-jk="Perempuan" data-nisn="0112033430" data-lahir="Gorontalo Utara, 2011-07-15" data-ayah="Iwan Mahful">Ana Mahful</option>
+                <option value="4" data-jk="Perempuan" data-nisn="0114034108" data-lahir="Gorontalo Utara, 2011-06-19" data-ayah="Usman Saini">Anatasya S. Saini</option>
+                <option value="5" data-jk="Perempuan" data-nisn="0112168137" data-lahir="BITUNG, 2011-04-15" data-ayah="HAMZAH TOONAWU">Aprilia Toonawu</option>
+                <option value="6" data-jk="Perempuan" data-nisn="0119120478" data-lahir="Gorontalo Utara, 2011-07-02" data-ayah="Abdul Gias atima">Desri E. Atima</option>
+                <option value="7" data-jk="Perempuan" data-nisn="0113693479" data-lahir="Gorontalo Utara, 2011-10-26" data-ayah="Inton Suna">Flora Sagita Suna</option>
+                <option value="8" data-jk="Perempuan" data-nisn="3100501183" data-lahir="GORONTALO UTARA, 2010-11-20" data-ayah="Irfan HS Tomayahu">JELYTA PUTRI IN. TOMAYAHU</option>
+                <option value="9" data-jk="Perempuan" data-nisn="3119717396" data-lahir="GORONTALO UTARA, 2011-07-02" data-ayah="Tuu Pakaya">JULIA PAKAYA</option>
+                <option value="10" data-jk="Perempuan" data-nisn="0114053130" data-lahir="Gorontalo Utara, 2011-04-28" data-ayah="Haris Rahman">Khumairah Rahman</option>
+                <option value="11" data-jk="Perempuan" data-nisn="0113632807" data-lahir="Gorontalo Utara, 2011-06-09" data-ayah="Hamid Mobilingo">Lina Mobilingo</option>
+                <option value="12" data-jk="Laki-laki" data-nisn="0111777118" data-lahir="Gorontalo Utara, 2011-02-27" data-ayah="Tahir Idrus">Lisan Idrus</option>
+                <option value="13" data-jk="Laki-laki" data-nisn="3106729926" data-lahir="GORONTALO UTARA, 2010-09-24" data-ayah="Ilham Idrus">MOHAMAD HAIKAL IDRUS</option>
+                <option value="14" data-jk="Laki-laki" data-nisn="0091810250" data-lahir="MONANO, 2009-11-29" data-ayah="SAIPUL ADUKA">MOHAMAD RAFI ADUKA</option>
+                <option value="15" data-jk="Perempuan" data-nisn="0101169081" data-lahir="Karya Mukti, 2010-11-25" data-ayah="Mansur Matalauni">Natasya Matalauni</option>
+                <option value="16" data-jk="Perempuan" data-nisn="0112390688" data-lahir="Gorontalo, 2011-07-22" data-ayah="JUNIAL S. YUSUF">Nur Aulia Amora Yusuf</option>
+                <option value="17" data-jk="Laki-laki" data-nisn="0116042238" data-lahir="PULAHENTI, 2011-08-19" data-ayah="SYAFRUDIN I. KAU">Putra Ramadhan Kau</option>
+                <option value="18" data-jk="Laki-laki" data-nisn="3112741105" data-lahir="GORONTALO UTARA, 2011-11-30" data-ayah="Umar Supardi">RAHMAN SUPARDI</option>
+                <option value="19" data-jk="Laki-laki" data-nisn="0109357824" data-lahir="MONAS, 2010-12-24" data-ayah="NURDIN AHMAD">RISKIYANTO AHMAD</option>
+                <option value="20" data-jk="Perempuan" data-nisn="0115983110" data-lahir="Gorontalo Utara, 2011-11-18" data-ayah="Risno T. Tomayahu">SALSA TOMAYAHU</option>
+                <option value="21" data-jk="Perempuan" data-nisn="0117083124" data-lahir="Tudi, 2011-07-11" data-ayah="Irfan Puluhulawa">SELSI PULUHULAWA</option>
+                <option value="22" data-jk="Perempuan" data-nisn="0108684515" data-lahir="TUDI, 2010-01-14" data-ayah="Paris Rahima">SINTA RAHIMA</option>
+                <option value="23" data-jk="Laki-laki" data-nisn="0105438404" data-lahir="TULUNGAGUNG, 2010-05-05" data-ayah="EDI SUPARYONO">SYAHMINA CANDRADINATA</option>
+                <option value="24" data-jk="Perempuan" data-nisn="0107861258" data-lahir="TUDI, 2010-11-04" data-ayah="Hamid H. Pakaya">TIYARA PAKAYA</option>
+                <option value="25" data-jk="Perempuan" data-nisn="0118339690" data-lahir="TUDI, 2011-01-01" data-ayah="Yusuf Abdullah">YUYUN ABDULLAH</option>
+            </select>
+        </div>
+
+        <div id="panelValidasi" class="hidden space-y-6">
+            <div id="kartuData" class="bg-white rounded-3xl p-6 border-2 border-slate-100 shadow-sm">
+                <div class="grid grid-cols-2 gap-4">
+                    <div><p class="text-[10px] font-bold text-slate-400 uppercase">NISN </p><p id="v-nisn" class="font-black text-blue-600 font-mono text-sm"></p></div>
+                    <div><p class="text-[10px] font-bold text-slate-400 uppercase">JK </p><p id="v-jk" class="font-bold text-slate-700 text-sm"></p></div>
+                    <div class="col-span-2 border-t pt-3">
+                        <p class="text-[10px] font-bold text-slate-400 uppercase">Tempat, Tanggal Lahir | Format (Tahun - bulan - tanggal </p>
+                        <p id="v-lahir" class="text-md font-extrabold text-slate-800"></p>
+                    </div>
+                    <div class="col-span-2 border-t pt-3">
+                        <p class="text-[10px] font-bold text-slate-400 uppercase">Nama Ayah </p>
+                        <p id="v-ayah" class="text-sm font-bold text-slate-700"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <button onclick="pilihStatus(true)" id="btnSesuai" class="py-4 rounded-2xl border-2 border-slate-200 font-bold text-xs text-slate-400 transition-all flex flex-col items-center">✅ SESUAI</button>
+                <button onclick="pilihStatus(false)" id="btnTidak" class="py-4 rounded-2xl border-2 border-slate-200 font-bold text-xs text-slate-400 transition-all flex flex-col items-center">❌ TIDAK SESUAI</button>
+            </div>
+
+            <div id="formKoreksi" class="hidden bg-red-50 p-5 rounded-3xl border border-red-100 space-y-3">
+                <textarea id="catatan" class="w-full p-4 rounded-xl text-sm outline-none" rows="2" placeholder="Sebutkan data yang salah..."></textarea>
+                <input type="file" id="inputFile" class="hidden" accept="image/*">
+                <label for="inputFile" id="uploadLabel" class="block w-full p-4 border-2 border-dashed border-red-300 rounded-xl bg-white text-center text-xs font-bold text-red-500 cursor-pointer uppercase">Unggah Bukti Ijazah SD</label>
+                <div id="previewContainer" class="hidden text-center"><img id="imgPreview" class="max-h-32 mx-auto rounded-lg shadow"></div>
+            </div>
+
+            <button id="btnKirim" onclick="kirimData()" class="w-full bg-navy text-white font-black py-5 rounded-2xl shadow-lg border-b-4 border-yellow-500 uppercase text-sm active:scale-95 transition-all">Simpan & Kirim</button>
+        </div>
+
+        <div id="pesanBlokir" class="hidden bg-white rounded-3xl p-8 border-2 border-yellow-400 text-center shadow-xl">
+            <span class="text-5xl">✅</span>
+            <h2 class="text-lg font-black text-navy mt-4 uppercase">Data Sudah Tervalidasi</h2>
+            <p class="text-slate-500 text-sm mt-1">Nama ini telah melakukan validasi sebelumnya. Terima kasih!</p>
+        </div>
+    </main>
+
+    <script>
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyT7eUeSpLINIwsPqsbab0VRqTis05nL50S6g8tiq9yw0LPCtxJSaVqM2QzzCM0i5uTgg/exec';
+        let sudahValidasi = [];
+        let statusTerpilih = null;
+        let stringFile = "";
+
+        async function sinkronisasi() {
+            try {
+                const res = await fetch(WEB_APP_URL);
+                sudahValidasi = await res.json();
+                document.getElementById('statusInfo').innerHTML = `<p class="text-xs text-green-700 font-bold">✅ Database Sinkron (Online)</p>`;
+            } catch (e) {
+                document.getElementById('statusInfo').innerHTML = `<p class="text-xs text-red-700 font-bold">⚠️ Mode Offline (Cek Koneksi)</p>`;
+            }
+        }
+        window.onload = sinkronisasi;
+
+        const sel = document.getElementById('studentSelect');
+        sel.addEventListener('change', function() {
+            const nama = this.options[this.selectedIndex].text;
+            const panel = document.getElementById('panelValidasi');
+            const blokir = document.getElementById('pesanBlokir');
+
+            if (sudahValidasi.includes(nama)) {
+                panel.classList.add('hidden');
+                blokir.classList.remove('hidden');
+                return;
+            }
+
+            blokir.classList.add('hidden');
+            if (this.value) {
+                const o = this.options[this.selectedIndex];
+                panel.classList.remove('hidden');
+                document.getElementById('v-jk').innerText = o.dataset.jk;
+                document.getElementById('v-nisn').innerText = o.dataset.nisn;
+                document.getElementById('v-lahir').innerText = o.dataset.lahir;
+                document.getElementById('v-ayah').innerText = o.dataset.ayah;
+                resetUI();
+            } else {
+                panel.classList.add('hidden');
+            }
+        });
+
+        function pilihStatus(s) {
+            statusTerpilih = s ? "SESUAI" : "TIDAK SESUAI";
+            resetUI();
+            if (s) {
+                document.getElementById('btnSesuai').className = "py-4 rounded-2xl border-4 border-green-500 bg-green-50 font-black text-xs text-green-700 shadow-md flex flex-col items-center";
+            } else {
+                document.getElementById('btnTidak').className = "py-4 rounded-2xl border-4 border-red-500 bg-red-50 font-black text-xs text-red-700 shadow-md flex flex-col items-center";
+                document.getElementById('formKoreksi').classList.remove('hidden');
+            }
+        }
+
+        function resetUI() {
+            document.getElementById('btnSesuai').className = "py-4 rounded-2xl border-2 border-slate-200 bg-white font-bold text-xs text-slate-400 flex flex-col items-center";
+            document.getElementById('btnTidak').className = "py-4 rounded-2xl border-2 border-slate-200 bg-white font-bold text-xs text-slate-400 flex flex-col items-center";
+            document.getElementById('formKoreksi').classList.add('hidden');
+        }
+
+        document.getElementById('inputFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    const scale = 800 / img.width;
+                    canvas.width = 800; canvas.height = img.height * scale;
+                    canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+                    stringFile = canvas.toDataURL('image/jpeg', 0.6);
+                    document.getElementById('imgPreview').src = stringFile;
+                    document.getElementById('previewContainer').classList.remove('hidden');
+                    document.getElementById('uploadLabel').innerText = "BERKAS SIAP ✅";
+                };
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        async function kirimData() {
+            if (!statusTerpilih) return alert("Silakan pilih status kesesuaian data!");
+            if (statusTerpilih === "TIDAK SESUAI" && !stringFile) return alert("Mohon unggah foto ijazah sebagai bukti!");
+
+            const btn = document.getElementById('btnKirim');
+            btn.disabled = true;
+            btn.innerHTML = `<span class="loader"></span> MENGIRIM...`;
+
+            try {
+                await fetch(WEB_APP_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    body: JSON.stringify({
+                        namaSiswa: sel.options[sel.selectedIndex].text,
+                        status: statusTerpilih,
+                        catatan: document.getElementById('catatan').value,
+                        fileIjazah: stringFile
+                    })
+                });
+                alert("Berhasil disimpan!");
+                location.reload();
+            } catch (e) {
+                alert("Koneksi gagal.");
+                btn.disabled = false;
+                btn.innerText = "Simpan & Kirim";
+            }
+        }
+    </script>
+</body>
+</html>
